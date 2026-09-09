@@ -1,0 +1,59 @@
+{
+  "project_name": "todo_app_test",
+  "description": "Flask todo app with SQLite",
+  "created_at": "2026-09-07T17:20:42.986875+00:00",
+  "status": "in_progress",
+  "batches": [
+    {
+      "batch_index": 1,
+      "files": [
+        "app.py",
+        "models.py",
+        "config.py",
+        "requirements.txt",
+        "database.py"
+      ],
+      "task_id": "build_todo_app_test_b1",
+      "status": "failed",
+      "completed_at": "2026-09-07T17:21:05.628777+00:00",
+      "file_statuses": {}
+    },
+    {
+      "batch_index": 2,
+      "files": [
+        "routes.py",
+        "forms.py"
+      ],
+      "task_id": "build_todo_app_test_b2",
+      "status": "done",
+      "completed_at": "2026-09-07T17:23:17.131256+00:00",
+      "file_statuses": {
+        "routes.py": "written",
+        "forms.py": "written"
+      }
+    },
+    {
+      "batch_index": 3,
+      "files": [
+        "templates/base.html",
+        "templates/index.html",
+        "templates/create.html",
+        "templates/edit.html",
+        "templates/delete.html"
+      ],
+      "task_id": null,
+      "status": "pending",
+      "completed_at": null
+    },
+    {
+      "batch_index": 4,
+      "files": [
+        "tests/test_app.py",
+        "tests/conftest.py"
+      ],
+      "task_id": null,
+      "status": "pending",
+      "completed_at": null
+    }
+  ]
+}

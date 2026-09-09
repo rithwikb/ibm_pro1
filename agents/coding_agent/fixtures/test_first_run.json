@@ -1,0 +1,51 @@
+{
+  "_fixture": "test_first_run",
+  "_scenario": "Happy path — first run from Architect. Agent reads real scoped files, produces a unified diff, routes to testing_agent.",
+  "_expected": {
+    "status": "in_progress",
+    "current_agent": "testing_agent",
+    "code_diff": "<non-null unified diff string>",
+    "history_last_entry": {
+      "agent": "coding_agent",
+      "success": true,
+      "output_summary_pattern": "code_diff generated for 2 file(s)"
+    },
+    "immutable_fields_unchanged": ["task_id", "feature_request", "acceptance_criteria", "scoped_files", "plan", "test_results", "review_result", "retry_count"]
+  },
+  "_disk_state": {
+    "src/auth/login.py": "EXISTS on disk",
+    "src/middleware/rate_limit.py": "DOES NOT EXIST on disk — this is a NEW FILE"
+  },
+  "task_id": "task_001",
+  "feature_request": "Add rate limiting to the login endpoint",
+  "acceptance_criteria": [
+    "Max 5 login attempts per IP per 10 minutes",
+    "Returns HTTP 429 when limit exceeded",
+    "All existing login tests still pass"
+  ],
+  "scoped_files": [
+    "src/auth/login.py",
+    "src/middleware/rate_limit.py"
+  ],
+  "status": "in_progress",
+  "current_agent": "coding_agent",
+  "plan": "Add a token-bucket rate limiter middleware keyed by IP, wrap the login route with it, return 429 on exceed.\nNEW FILE: src/middleware/rate_limit.py",
+  "history": [
+    {
+      "agent": "pm_agent",
+      "output_summary": "criteria defined",
+      "timestamp": "2026-08-10T09:00:00Z",
+      "success": true
+    },
+    {
+      "agent": "architect_agent",
+      "output_summary": "plan + files scoped",
+      "timestamp": "2026-08-10T09:05:00Z",
+      "success": true
+    }
+  ],
+  "code_diff": null,
+  "test_results": null,
+  "review_result": null,
+  "retry_count": 0
+}

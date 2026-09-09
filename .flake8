@@ -1,0 +1,22 @@
+[flake8]
+# Reduce noise when scanning the FlaskBB sample repo.
+# The sample repo has its own style; we only care about real bugs.
+max-line-length = 120
+
+# Ignore common style-only issues that are not real bugs:
+#   E501  line too long (handled by max-line-length above)
+#   W503  line break before binary operator (PEP 8 reversed this)
+#   E402  module level import not at top of file (Flask apps often do this)
+#   E266  too many leading '#' for block comment
+extend-ignore = W503, E402, E266
+
+# Don't scan virtualenvs, caches, or migration files inside the sample repo
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    .venv_dashboard,
+    *.egg-info,
+    migrations,
+    node_modules

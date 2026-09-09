@@ -1,0 +1,52 @@
+{
+  "_fixture": "test_scope_violation",
+  "_scenario": "Scope boundary enforcement. The agent is given a valid task with two scoped files. The verifier checks that every +++ b/<path> line in the output code_diff refers only to paths in scoped_files. A diff touching any other path is a failure.",
+  "_expected": {
+    "status": "in_progress",
+    "current_agent": "testing_agent",
+    "code_diff_scope_check": "every path in '+++ b/<path>' lines must appear in scoped_files after normalisation",
+    "forbidden_paths_in_diff": ["src/auth/utils.py", "src/config/settings.py"],
+    "history_last_entry": {
+      "agent": "coding_agent",
+      "success": true
+    },
+    "immutable_fields_unchanged": ["task_id", "feature_request", "acceptance_criteria", "scoped_files", "plan", "test_results", "review_result", "retry_count"]
+  },
+  "_disk_state": {
+    "src/auth/login.py": "EXISTS on disk",
+    "src/middleware/sanitise.py": "DOES NOT EXIST on disk — this is a NEW FILE"
+  },
+  "_verification_note": "After running this fixture, parse code_diff for all '+++ b/<path>' lines. Normalise each path (strip leading ./). Assert every path is in scoped_files. If any path is not, the agent violated the scope boundary — fail the test.",
+  "task_id": "task_003",
+  "feature_request": "Add input sanitisation to the login endpoint",
+  "acceptance_criteria": [
+    "Username and password are stripped of leading/trailing whitespace before authentication",
+    "Empty username or password returns HTTP 400",
+    "All existing login tests still pass"
+  ],
+  "scoped_files": [
+    "src/auth/login.py",
+    "src/middleware/sanitise.py"
+  ],
+  "status": "in_progress",
+  "current_agent": "coding_agent",
+  "plan": "Sanitise username and password inputs in the login view. Strip whitespace. Return 400 if either is empty after stripping. Extract sanitisation logic into a helper in sanitise.py.\nNEW FILE: src/middleware/sanitise.py",
+  "history": [
+    {
+      "agent": "pm_agent",
+      "output_summary": "criteria defined",
+      "timestamp": "2026-08-10T10:00:00Z",
+      "success": true
+    },
+    {
+      "agent": "architect_agent",
+      "output_summary": "plan + files scoped",
+      "timestamp": "2026-08-10T10:05:00Z",
+      "success": true
+    }
+  ],
+  "code_diff": null,
+  "test_results": null,
+  "review_result": null,
+  "retry_count": 0
+}

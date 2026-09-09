@@ -1,0 +1,14 @@
+{
+  "task_id": "task_003",
+  "stats_snapshot": {
+    "pm_agent":        { "runs": 5, "successes": 5, "rate": 1.0 },
+    "architect_agent": { "runs": 5, "successes": 4, "rate": 0.8 },
+    "coding_agent":    { "runs": 5, "successes": 2, "rate": 0.4 },
+    "testing_agent":   { "runs": 5, "successes": 4, "rate": 0.8 },
+    "review_agent":    { "runs": 5, "successes": 3, "rate": 0.6 }
+  },
+  "underperformers": ["coding_agent"],
+  "recommended_action": "rewrite_prompt",
+  "reasoning": "coding_agent succeeded 2/5 runs (rate=0.40); failure patterns: 'missing input validation'; 'hardcoded secrets'",
+  "timestamp": "2026-08-10T14:00:00Z"
+}

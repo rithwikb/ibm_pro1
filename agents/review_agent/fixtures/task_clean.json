@@ -1,0 +1,54 @@
+{
+  "task_id": "task_test_002",
+  "feature_request": "Add rate limiting to the login endpoint",
+  "acceptance_criteria": [
+    "Max 5 login attempts per IP per 10 minutes",
+    "Returns HTTP 429 when limit exceeded",
+    "All existing login tests still pass"
+  ],
+  "scoped_files": [
+    "src/auth/login.py",
+    "src/middleware/rate_limit.py"
+  ],
+  "status": "in_progress",
+  "current_agent": "testing_agent",
+  "plan": "Add a token-bucket rate limiter middleware keyed by IP, wrap the login route with it, return 429 on exceed.",
+  "history": [
+    {
+      "agent": "pm_agent",
+      "output_summary": "criteria defined",
+      "timestamp": "2026-08-10T09:00:00Z",
+      "success": true
+    },
+    {
+      "agent": "architect_agent",
+      "output_summary": "plan + files scoped",
+      "timestamp": "2026-08-10T09:05:00Z",
+      "success": true
+    },
+    {
+      "agent": "coding_agent",
+      "output_summary": "rate limiting middleware added",
+      "timestamp": "2026-08-10T09:15:00Z",
+      "success": true
+    },
+    {
+      "agent": "testing_agent",
+      "output_summary": "tests passed — 3/3 acceptance criteria matched",
+      "timestamp": "2026-08-10T09:25:00Z",
+      "success": true
+    }
+  ],
+  "code_diff": "--- a/src/auth/login.py\n+++ b/src/auth/login.py\n@@ -1,10 +1,18 @@\n from flask import request, jsonify\n from models import User\n from functools import wraps\n from middleware.rate_limit import rate_limit_login\n \n @rate_limit_login\n def login():\n     data = request.get_json()\n     if not data or 'email' not in data or 'password' not in data:\n         return jsonify({'error': 'Missing email or password'}), 400\n     email = str(data['email'])[:255]\n     user = User.query.filter_by(email=email).first()\n     if user and user.check_password(data['password']):\n         return jsonify({'token': user.generate_token()})\n     return jsonify({'error': 'Invalid credentials'}), 401\n--- a/src/middleware/rate_limit.py\n+++ b/src/middleware/rate_limit.py\n@@ -0,0 +1,20 @@\n+from collections import defaultdict\n+from datetime import datetime, timedelta\n+from functools import wraps\n+from flask import request, jsonify\n+\n+_attempts = defaultdict(list)\n+WINDOW = timedelta(minutes=10)\n+MAX_ATTEMPTS = 5\n+\n+def rate_limit_login(f):\n+    @wraps(f)\n+    def wrapper(*args, **kwargs):\n+        ip = request.remote_addr\n+        now = datetime.utcnow()\n+        _attempts[ip] = [t for t in _attempts[ip] if now - t < WINDOW]\n+        if len(_attempts[ip]) >= MAX_ATTEMPTS:\n+            return jsonify({'error': 'Too many requests'}), 429\n+        _attempts[ip].append(now)\n+        return f(*args, **kwargs)\n+    return wrapper\n",
+  "test_results": {
+    "passed": true,
+    "criteria_matched": [
+      "Max 5 login attempts per IP per 10 minutes",
+      "Returns HTTP 429 when limit exceeded",
+      "All existing login tests still pass"
+    ],
+    "failures": []
+  },
+  "review_result": null,
+  "retry_count": 0
+}

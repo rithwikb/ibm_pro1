@@ -1,0 +1,75 @@
+{
+  "task_id": "live_4",
+  "feature_request": "create hello.py which prints hello",
+  "acceptance_criteria": [
+    "File hello.py is created in root",
+    "Running hello.py exits with code 0",
+    "Standard output contains exactly hello",
+    "All existing tests pass"
+  ],
+  "scoped_files": [
+    "hello.py"
+  ],
+  "status": "approved",
+  "current_agent": "review_agent",
+  "plan": "NEW FILE: hello.py\nCreate hello.py in the root of the repository.\nThe file should contain a Python script that prints the exact string 'hello' to standard out.\nThe script should exit with code 0.\nNo changes to other existing files are required.",
+  "history": [
+    {
+      "agent": "pm_agent",
+      "output_summary": "acceptance criteria defined (4 criteria)",
+      "timestamp": "2026-09-09T11:14:55.329083+00:00",
+      "success": true
+    },
+    {
+      "agent": "architect_agent",
+      "output_summary": "plan written, 1 files scoped",
+      "timestamp": "2026-09-09T11:14:55.662514+00:00",
+      "success": true
+    },
+    {
+      "agent": "coding_agent",
+      "output_summary": "code_diff generated for 1 file(s) including 1 new file(s)",
+      "timestamp": "2026-09-09T11:14:55Z",
+      "success": true
+    },
+    {
+      "agent": "testing_agent",
+      "output_summary": "4/4 criteria matched; passed",
+      "timestamp": "2026-09-09T11:14:56Z",
+      "success": true
+    },
+    {
+      "agent": "review_agent",
+      "output_summary": "approved \u2014 no issues found",
+      "timestamp": "2026-09-09T11:14:57.635192+00:00",
+      "success": true
+    }
+  ],
+  "code_diff": "--- /dev/null\n+++ b/hello.py\n@@ -0,0 +1,1 @@\n+print(\"hello\")\n",
+  "test_results": {
+    "passed": true,
+    "criteria_matched": [
+      "File hello.py is created in root",
+      "Running hello.py exits with code 0",
+      "Standard output contains exactly hello",
+      "All existing tests pass"
+    ],
+    "failures": []
+  },
+  "review_result": {
+    "passed": true,
+    "findings": []
+  },
+  "retry_count": 0,
+  "consensus_report": {
+    "consensus_score_pct": 97.1,
+    "confidence_level": "HIGH_CONFIDENCE",
+    "sub_scores": {
+      "pm_architect_alignment": 98.0,
+      "architect_coding_alignment": 96.5,
+      "testing_alignment": 95.0,
+      "review_rigor": 99.0
+    },
+    "is_unanimous": true
+  }
+}

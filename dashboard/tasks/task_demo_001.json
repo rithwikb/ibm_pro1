@@ -1,0 +1,23 @@
+{
+  "task_id": "task_demo_001",
+  "feature_request": "Add rate limiting to the login endpoint",
+  "acceptance_criteria": [],
+  "scoped_files": [],
+  "status": "approved",
+  "current_agent": "human",
+  "plan": null,
+  "history": [
+    {
+      "agent": "pm_agent",
+      "output_summary": "pm_agent error: HTTP Error 401: Unauthorized",
+      "timestamp": "2026-08-22T11:44:12.470642+00:00",
+      "success": false
+    }
+  ],
+  "code_diff": null,
+  "test_results": null,
+  "review_result": null,
+  "retry_count": 0,
+  "approved": true,
+  "approved_at": "2026-09-05T04:30:18.358493+00:00"
+}

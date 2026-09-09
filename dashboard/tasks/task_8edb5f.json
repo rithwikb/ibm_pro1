@@ -1,0 +1,82 @@
+{
+  "task_id": "task_8edb5f",
+  "feature_request": "Create a database schema in raw SQL format which has banking management system which can create an account deposit and credit money, transfer money ",
+  "acceptance_criteria": [
+    "The generated SQL script contains valid CREATE TABLE statements for 'accounts', 'transactions', and 'users', with 'transactions' referencing 'accounts' via foreign keys",
+    "The 'accounts' table includes columns for 'account_id' (primary key), 'balance' (numeric, default 0), and 'status' (string, default 'active')",
+    "The 'transactions' table includes columns for 'transaction_id' (primary key), 'sender_account_id', 'receiver_account_id' (for transfers), 'amount' (numeric), 'type' (enum: 'deposit', 'credit', 'transfer'), and 'timestamp",
+    "The script includes sample INSERT statements that verify an account can be created, funded via a deposit, credited with interest, and has balance reduced by a transfer to another account",
+    "All existing tests still pass"
+  ],
+  "scoped_files": [
+    "banking_schema.sql"
+  ],
+  "status": "blocked",
+  "current_agent": "manager_agent",
+  "plan": "NEW FILE: banking_schema.sql\n\n1. Create a new file `banking_schema.sql` containing raw SQL statements for a banking management system.\n2. Define a `users` table with `user_id` as primary key and basic user information fields (e.g., `username`, `email`).\n3. Define an `accounts` table with:\n   - `account_id` (Primary Key)\n   - `user_id` (Foreign Key referencing `users`)\n   - `balance` (Numeric, Default 0)\n   - `status` (String/Varchar, Default 'active')\n4. Define a `transactions` table with:\n   - `transaction_id` (Primary Key)\n   - `sender_account_id` (Foreign Key referencing `accounts`)\n   - `receiver_account_id` (Foreign Key referencing `accounts`)\n   - `amount` (Numeric)\n   - `type` (String/Varchar, constrained to values: 'deposit', 'credit', 'transfer')\n   - `timestamp` (DateTime, Default CURRENT_TIMESTAMP)\n5. Include sample `INSERT` statements to demonstrate:\n   - Creating a user and account.\n   - A deposit transaction increasing the balance.\n   - A credit transaction (interest/bonus) increasing the balance.\n   - A transfer transaction decreasing one balance and increasing another, verifying foreign key integrity and business logic flow.",
+  "history": [
+    {
+      "agent": "pm_agent",
+      "output_summary": "acceptance criteria defined (5 criteria)",
+      "timestamp": "2026-09-08T07:55:33.898674+00:00",
+      "success": true
+    },
+    {
+      "agent": "architect_agent",
+      "output_summary": "plan written, 1 files scoped",
+      "timestamp": "2026-09-08T07:55:35.219085+00:00",
+      "success": true
+    },
+    {
+      "agent": "coding_agent",
+      "output_summary": "code_diff generated for 1 file(s) including 1 new file(s)",
+      "timestamp": "2026-09-08T07:55:37Z",
+      "success": true
+    },
+    {
+      "agent": "coding_agent",
+      "output_summary": "preflight syntax check failed: SyntaxError in generated code patch at line 1: invalid syntax",
+      "timestamp": "2026-09-08T07:55:37.490032+00:00",
+      "success": false
+    },
+    {
+      "agent": "coding_agent",
+      "output_summary": "code_diff generated for 1 file(s) including 1 new file(s)",
+      "timestamp": "2026-09-08T07:55:53Z",
+      "success": true
+    },
+    {
+      "agent": "coding_agent",
+      "output_summary": "preflight syntax check failed: SyntaxError in generated code patch at line 1: invalid syntax",
+      "timestamp": "2026-09-08T07:55:53.551682+00:00",
+      "success": false
+    },
+    {
+      "agent": "coding_agent",
+      "output_summary": "retry_count cap reached, escalating to human",
+      "timestamp": "2026-09-08T07:55:53Z",
+      "success": false
+    },
+    {
+      "agent": "coding_agent",
+      "output_summary": "preflight syntax check failed: Empty code diff provided",
+      "timestamp": "2026-09-08T07:55:53.552230+00:00",
+      "success": false
+    }
+  ],
+  "code_diff": null,
+  "test_results": null,
+  "review_result": null,
+  "retry_count": 2,
+  "consensus_report": {
+    "consensus_score_pct": 87.0,
+    "confidence_level": "MODERATE_CONFIDENCE",
+    "sub_scores": {
+      "pm_architect_alignment": 98.0,
+      "architect_coding_alignment": 80.0,
+      "testing_alignment": 90.0,
+      "review_rigor": 80.0
+    },
+    "is_unanimous": false
+  }
+}

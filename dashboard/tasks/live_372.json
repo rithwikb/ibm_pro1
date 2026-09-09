@@ -1,0 +1,44 @@
+{
+  "task_id": "live_372",
+  "feature_request": "Add rate limiting to user login endpoint with 5 attempts per minute",
+  "acceptance_criteria": [
+    "A successful login attempt increments the login attempt count for the user; verify the count is stored accurately in the session or persistent store.",
+    "After the 5th failed login attempt within a 1\u2011minute window, the endpoint responds with HTTP status 429 Too Many Requests and includes a Retry\u2011After header indicating the wait time.",
+    "For a user who reaches the limit, subsequent login requests within the same minute return HTTP 429 regardless of credentials, including correct username/password combinations.",
+    "A user with zero failed attempts can log in successfully, and the attempt count remains unchanged.",
+    "All existing tests still pass"
+  ],
+  "scoped_files": [],
+  "status": "blocked",
+  "current_agent": "human",
+  "plan": null,
+  "history": [
+    {
+      "agent": "pm_agent",
+      "output_summary": "acceptance criteria defined (5 criteria)",
+      "timestamp": "2026-09-04T14:49:42.765360+00:00",
+      "success": true
+    },
+    {
+      "agent": "architect_agent",
+      "output_summary": "architect_agent error: Architect output validation failed: scoped_files path 'flaskbb/views/auth.py' does not exist on disk and is not marked N",
+      "timestamp": "2026-09-04T14:49:46.928599+00:00",
+      "success": false
+    }
+  ],
+  "code_diff": null,
+  "test_results": null,
+  "review_result": null,
+  "retry_count": 0,
+  "consensus_report": {
+    "consensus_score_pct": 72.5,
+    "confidence_level": "REQUIRES_ATTENTION",
+    "sub_scores": {
+      "pm_architect_alignment": 40.0,
+      "architect_coding_alignment": 80.0,
+      "testing_alignment": 90.0,
+      "review_rigor": 80.0
+    },
+    "is_unanimous": false
+  }
+}

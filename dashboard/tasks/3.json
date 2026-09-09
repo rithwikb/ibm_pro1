@@ -1,0 +1,32 @@
+{
+  "task_id": "3",
+  "feature_request": "create hello.py which prints hi",
+  "acceptance_criteria": [],
+  "scoped_files": [],
+  "status": "blocked",
+  "current_agent": "manager_agent",
+  "plan": null,
+  "history": [
+    {
+      "agent": "pm_agent",
+      "output_summary": "runtime error: Groq API call failed: Error code: 429 - {'error': {'message': \"Request too large for model `qwen/qwen3.8-27b` in organiz",
+      "timestamp": "2026-09-09T10:47:00.630779+00:00",
+      "success": false
+    }
+  ],
+  "code_diff": null,
+  "test_results": null,
+  "review_result": null,
+  "retry_count": 0,
+  "consensus_report": {
+    "consensus_score_pct": 83.8,
+    "confidence_level": "MODERATE_CONFIDENCE",
+    "sub_scores": {
+      "pm_architect_alignment": 85.0,
+      "architect_coding_alignment": 80.0,
+      "testing_alignment": 90.0,
+      "review_rigor": 80.0
+    },
+    "is_unanimous": false
+  }
+}

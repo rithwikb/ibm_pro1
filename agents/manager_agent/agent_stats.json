@@ -1,0 +1,62 @@
+{
+  "pm_agent": {
+    "recent_outcomes": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "runs": 5,
+    "successes": 5,
+    "rate": 1.0
+  },
+  "architect_agent": {
+    "recent_outcomes": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "runs": 5,
+    "successes": 5,
+    "rate": 1.0
+  },
+  "coding_agent": {
+    "recent_outcomes": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "runs": 5,
+    "successes": 5,
+    "rate": 1.0
+  },
+  "testing_agent": {
+    "recent_outcomes": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "runs": 5,
+    "successes": 5,
+    "rate": 1.0
+  },
+  "review_agent": {
+    "recent_outcomes": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "runs": 5,
+    "successes": 5,
+    "rate": 1.0
+  }
+}

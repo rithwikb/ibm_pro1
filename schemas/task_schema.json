@@ -1,0 +1,234 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgentTaskObject",
+  "description": "The single JSON contract passed between PM -> Architect -> Coding -> Testing -> Review -> Manager/Reflection. Every agent's system prompt must say: 'Output only valid JSON matching this schema. No prose, no explanation outside the JSON.' Never paraphrase this object between agents.",
+  "type": "object",
+  "required": [
+    "task_id",
+    "feature_request",
+    "acceptance_criteria",
+    "scoped_files",
+    "status",
+    "current_agent",
+    "history",
+    "code_diff",
+    "test_results",
+    "review_result",
+    "retry_count"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "description": "Unique id for this task, e.g. 'task_001'."
+    },
+    "feature_request": {
+      "type": "string",
+      "description": "The original plain-English request typed by the human."
+    },
+    "acceptance_criteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Concrete, testable criteria written by the PM Agent. Testing Agent checks results against these directly."
+    },
+    "scoped_files": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "File paths (relative to sample repo root) the Architect Agent decided are relevant. Only these get loaded into Coding/Testing/Review context -- never the whole repo."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "needs_retry",
+        "blocked",
+        "awaiting_human_approval",
+        "approved",
+        "rejected",
+        "verified_fixed",
+        "verified_failed",
+        "apply_failed"
+      ],
+      "description": "Current lifecycle state of the task."
+    },
+    "current_agent": {
+      "type": "string",
+      "enum": [
+        "pm_agent",
+        "architect_agent",
+        "coding_agent",
+        "testing_agent",
+        "review_agent",
+        "manager_agent",
+        "human"
+      ],
+      "description": "Which agent (or human) currently owns this task."
+    },
+    "plan": {
+      "type": ["string", "null"],
+      "description": "Architect Agent's implementation plan / approach in plain terms. Null until Architect runs."
+    },
+    "history": {
+      "type": "array",
+      "description": "Ordered log of every agent that has touched this task, in the exact order they ran.",
+      "items": {
+        "type": "object",
+        "required": ["agent", "output_summary", "timestamp"],
+        "properties": {
+          "agent": {
+            "type": "string",
+            "enum": [
+              "pm_agent",
+              "architect_agent",
+              "coding_agent",
+              "testing_agent",
+              "review_agent",
+              "manager_agent",
+              "reflection_agent"
+            ]
+          },
+          "output_summary": {
+            "type": "string",
+            "description": "One-line summary of what this agent did, e.g. 'criteria defined' or 'plan + files scoped'."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 timestamp, e.g. '2026-08-10T14:32:00Z'."
+          },
+          "success": {
+            "type": ["boolean", "null"],
+            "description": "Did this agent's step succeed? Null if not yet evaluated. Manager Agent reads this field to compute per-agent success rates."
+          }
+        }
+      }
+    },
+    "code_diff": {
+      "type": ["string", "null"],
+      "description": "Unified diff produced by the Coding Agent. Null until Coding Agent runs."
+    },
+    "test_results": {
+      "type": ["object", "null"],
+      "description": "Structured output from the Testing Agent. Null until Testing Agent runs.",
+      "properties": {
+        "passed": { "type": "boolean" },
+        "criteria_matched": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Which acceptance_criteria entries this test run satisfied."
+        },
+        "failures": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "review_result": {
+      "type": ["object", "null"],
+      "description": "Structured findings from the Review Agent, per Section 10's security checklist. Null until Review Agent runs.",
+      "properties": {
+        "passed": { "type": "boolean" },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "checklist_item": { "type": "string" },
+              "file": { "type": "string" },
+              "line": { "type": ["integer", "null"] },
+              "severity": {
+                "type": "string",
+                "enum": ["low", "medium", "high", "critical"]
+              },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "retry_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2,
+      "description": "Number of Review -> Coding retries so far. Hard capped at 2 -- on the 3rd rejection, escalate to a human instead of looping."
+    },
+    "verification_result": {
+      "type": ["object", "null"],
+      "description": "Written by apply_fixes.py after git apply + flake8 verification. Null until apply_fixes.py runs.",
+      "properties": {
+        "applied": { "type": "boolean" },
+        "git_apply_output": { "type": "string" },
+        "flake8_passed": { "type": "boolean" },
+        "flake8_output": { "type": "string" },
+        "verified_at": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "batch_index": {
+      "type": ["integer", "null"],
+      "description": "Phase 2: which batch number this task represents in a build run."
+    },
+    "total_batches": {
+      "type": ["integer", "null"],
+      "description": "Phase 2: total number of batches planned for this build run."
+    },
+    "project_name": {
+      "type": ["string", "null"],
+      "description": "Phase 2: name of the generated project this task belongs to."
+    },
+    "approved": {
+      "type": ["boolean", "null"],
+      "description": "True if approved by human sign-off."
+    },
+    "approved_at": {
+      "type": ["string", "null"],
+      "description": "ISO 8601 timestamp when human approval occurred."
+    },
+    "consensus_report": {
+      "type": ["object", "null"],
+      "description": "Multi-agent cross-stage confidence and agreement score."
+    },
+    "manager_report": {
+      "type": ["object", "null"],
+      "description": "Manager Agent performance audit report."
+    },
+    "reflection_results": {
+      "type": ["array", "null"],
+      "description": "Results of Reflection prompt rewriting if triggered."
+    }
+  },
+
+  "example": {
+    "task_id": "task_001",
+    "feature_request": "Add rate limiting to the login endpoint",
+    "acceptance_criteria": [
+      "Max 5 login attempts per IP per 10 minutes",
+      "Returns HTTP 429 when limit exceeded",
+      "All existing login tests still pass"
+    ],
+    "scoped_files": [
+      "src/auth/login.py",
+      "src/middleware/rate_limit.py"
+    ],
+    "status": "in_progress",
+    "current_agent": "coding_agent",
+    "plan": "Add a token-bucket rate limiter middleware keyed by IP, wrap the login route with it, return 429 on exceed.",
+    "history": [
+      {
+        "agent": "pm_agent",
+        "output_summary": "criteria defined",
+        "timestamp": "2026-08-10T09:00:00Z",
+        "success": true
+      },
+      {
+        "agent": "architect_agent",
+        "output_summary": "plan + files scoped",
+        "timestamp": "2026-08-10T09:05:00Z",
+        "success": true
+      }
+    ],
+    "code_diff": null,
+    "test_results": null,
+    "review_result": null,
+    "retry_count": 0
+  }
+}

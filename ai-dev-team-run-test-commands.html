@@ -1,0 +1,436 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AI Dev Team — Run &amp; Test Commands</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1f2328;
+    background: #ffffff;
+    padding: 32px 24px 48px;
+  }
+  .page { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .subtitle { color: #57606a; font-size: 13px; margin-bottom: 32px; }
+  h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #57606a;
+    margin: 32px 0 10px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 6px;
+  }
+  .card {
+    background: #f7f8fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .badge {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+  .badge-test  { background: #dbeafe; color: #1d4ed8; }
+  .badge-run   { background: #dcfce7; color: #15803d; }
+  .badge-demo  { background: #fef9c3; color: #854d0e; }
+  .badge-opt   { background: #f3e8ff; color: #6b21a8; }
+  .card-title  { font-weight: 600; font-size: 14px; line-height: 1.4; }
+  .card-desc   { font-size: 12.5px; color: #57606a; margin-top: 2px; }
+  .cmd-block   { padding: 10px 14px; }
+  code {
+    display: block;
+    font-family: "Cascadia Code", "Consolas", "SFMono-Regular", monospace;
+    font-size: 12.5px;
+    color: #1f2328;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  code:last-child { margin-bottom: 0; }
+  .note {
+    font-size: 12px;
+    color: #57606a;
+    margin-top: 6px;
+    padding-left: 2px;
+  }
+  .note b { color: #1f2328; }
+  .tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; }
+  .tag { font-size: 11.5px; padding: 3px 10px; border-radius: 12px; border: 1px solid #e5e7eb; color: #57606a; }
+  .divider { border: none; border-top: 1px solid #e5e7eb; margin: 28px 0; }
+  .pass-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #15803d;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  footer {
+    margin-top: 48px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 12px;
+    color: #57606a;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>AI Dev Team — Run &amp; Test Commands</h1>
+  <p class="subtitle">All commands run from the project root: <code style="display:inline;border:none;background:none;padding:0;font-size:13px;color:#3b82d4">c:\Users\Srikar Sagala\OneDrive - iiit-b\Desktop\ai-dev-team</code></p>
+
+  <div class="pass-box">✅ Current state: 643 tests passed · 0 failed · 0 errors</div>
+
+  <div class="tag-row">
+    <span class="tag">Python 3.14</span>
+    <span class="tag">pytest 8.3.4</span>
+    <span class="tag">streamlit 1.40.0</span>
+    <span class="tag">flake8 7.3.0</span>
+    <span class="tag">jsonschema 4.23.0</span>
+  </div>
+
+  
+  <h2>1 · Run Tests</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-test">test</span>
+      <div>
+        <div class="card-title">Full test suite (all 643 tests)</div>
+        <div class="card-desc">Runs every agent test + FlaskBB sample repo tests. Use this before submitting.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python -m pytest --tb=short -q</code>
+      <p class="note"><b>Expected:</b> 643 passed, 4 warnings, 0 failed</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-test">test</span>
+      <div>
+        <div class="card-title">Agent tests only (fast — skips FlaskBB)</div>
+        <div class="card-desc">Runs only your agent and orchestration tests. Much faster (~5 s).</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python -m pytest agents/ orchestration/ --tb=short -q</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-test">test</span>
+      <div>
+        <div class="card-title">Test a single agent</div>
+        <div class="card-desc">Replace the path with any agent test file.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python -m pytest agents/pm_agent/test_pm_agent.py -v</code>
+      <code>python -m pytest agents/architect_agent/test_architect_agent.py -v</code>
+      <code>python -m pytest agents/coding_agent/test_runner.py -v</code>
+      <code>python -m pytest agents/coding_agent/test_coding_agent.py -v</code>
+      <code>python -m pytest agents/manager_agent/test_manager.py -v</code>
+      <code>python -m pytest agents/reflection_agent/test_reflection.py -v</code>
+      <code>python -m pytest agents/testing_agent/agents/testing_agent/test_testing_agent.py -v</code>
+      <code>python -m pytest agents/scaffold_agent/test_scaffold_agent.py -v</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-test">test</span>
+      <div>
+        <div class="card-title">Verbose test output (see every test name)</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python -m pytest --tb=short -v 2&gt;&amp;1 | more</code>
+    </div>
+  </div>
+
+  
+  <h2>2 · Run the Main Pipeline</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-run">run</span>
+      <div>
+        <div class="card-title">Run the full end-to-end pipeline</div>
+        <div class="card-desc">Requires BOB_API_KEY + WATSONX_PROJECT_ID in .env. Runs all 7 agents in sequence.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python orchestration/pipeline.py --request "Add rate limiting to the login endpoint" --repo sample_repo/flaskbb --task-id task_001</code>
+      <p class="note"><b>Output:</b> pipeline_output.json — final task JSON with full history, diff, review result</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-run">run</span>
+      <div>
+        <div class="card-title">Pipeline with custom output file</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python orchestration/pipeline.py --request "Add password strength validation" --repo sample_repo/flaskbb --output my_run.json</code>
+    </div>
+  </div>
+
+  
+  <h2>3 · Scan Repo &amp; Auto-Fix Bugs</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-run">run</span>
+      <div>
+        <div class="card-title">Step 1 — Scan FlaskBB for flake8 errors</div>
+        <div class="card-desc">Runs flake8, saves results to dashboard/bugs.json.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python orchestration/scan.py --source sample_repo/flaskbb/flaskbb</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-run">run</span>
+      <div>
+        <div class="card-title">Step 2 — Run pipeline on selected bugs</div>
+        <div class="card-desc">After selecting bugs in the dashboard, this runs the pipeline on each one.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python orchestration/scan.py --source sample_repo/flaskbb/flaskbb --run-selected</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-run">run</span>
+      <div>
+        <div class="card-title">Apply approved diffs to disk + verify with flake8</div>
+        <div class="card-desc">Dry-run first to preview, then run without --dry-run to apply.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python orchestration/apply_fixes.py --repo sample_repo/flaskbb --dry-run</code>
+      <code>python orchestration/apply_fixes.py --repo sample_repo/flaskbb</code>
+    </div>
+  </div>
+
+  
+  <h2>4 · Build a New App from Scratch</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-run">run</span>
+      <div>
+        <div class="card-title">Scaffold + build a new project</div>
+        <div class="card-desc">Uses the Scaffold Agent to plan batches, then runs the pipeline for each batch.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python orchestration/build.py --description "Build a Flask todo app with login, CRUD, SQLite" --name todo_app</code>
+      <p class="note"><b>Output:</b> generated_projects/todo_app/ with all generated files + build_manifest.json</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-opt">optional</span>
+      <div>
+        <div class="card-title">Resume an interrupted build</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python orchestration/build.py --name todo_app --resume</code>
+    </div>
+  </div>
+
+  
+  <h2>5 · Dashboard (Live UI)</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-demo">demo</span>
+      <div>
+        <div class="card-title">Launch the Streamlit dashboard</div>
+        <div class="card-desc">Opens in your browser at http://localhost:8501. Shows 5 tabs: Bug Queue, Agent Stats, Prompt History, Code Review, Build Monitor.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python -m streamlit run dashboard/app.py</code>
+      <p class="note"><b>Tabs:</b> Tab 0 Bug Queue · Tab 1 Agent Stats · Tab 2 Prompt History · Tab 3 Code Review · Tab 4 Build Monitor</p>
+    </div>
+  </div>
+
+  
+  <h2>6 · Run Individual Agents (Standalone)</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-demo">demo</span>
+      <div>
+        <div class="card-title">PM Agent — generate acceptance criteria</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python agents/pm_agent/pm_agent.py --request "Add rate limiting to the login endpoint"</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-demo">demo</span>
+      <div>
+        <div class="card-title">Architect Agent — scope files and write plan</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python agents/architect_agent/architect_agent.py --task pipeline_output.json --repo sample_repo/flaskbb</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-demo">demo</span>
+      <div>
+        <div class="card-title">Manager Agent — analyse run stats</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python agents/manager_agent/manager.py --task pipeline_output.json</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-demo">demo</span>
+      <div>
+        <div class="card-title">Review Agent — security review a task diff</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python agents/review_agent/review_agent.py --input pipeline_output.json</code>
+    </div>
+  </div>
+
+  
+  <h2>7 · Quick Verification (no API key needed)</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-test">test</span>
+      <div>
+        <div class="card-title">Verify all imports are clean</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python -c "from orchestration.pipeline import run_pipeline; from agents.pm_agent.pm_agent import run_pm_agent; from agents.architect_agent.architect_agent import run_architect_agent; from agents.coding_agent.runner import run; from agents.review_agent.review_agent import run_review; from agents.manager_agent.manager import generate_report; print('ALL IMPORTS OK')"</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-test">test</span>
+      <div>
+        <div class="card-title">Verify pipeline CLI loads correctly</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python orchestration/pipeline.py --help</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-test">test</span>
+      <div>
+        <div class="card-title">Check Manager Agent stats file is valid</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python -c "from agents.manager_agent.manager import load_stats, STATS_PATH; s = load_stats(STATS_PATH); print('Stats OK:', list(s.keys()))"</code>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <h2>Quick Reference — What Needs .env Credentials</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-opt">note</span>
+      <div>
+        <div class="card-title">Commands that work WITHOUT BOB_API_KEY</div>
+        <div class="card-desc">All tests, dashboard UI, manager agent, bug scanner (flake8 only), help flags.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python -m pytest --tb=short -q</code>
+      <code>python -m streamlit run dashboard/app.py</code>
+      <code>python orchestration/scan.py --source sample_repo/flaskbb/flaskbb</code>
+      <code>python agents/manager_agent/manager.py --task pipeline_output.json</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="badge badge-run">needs .env</span>
+      <div>
+        <div class="card-title">Commands that REQUIRE BOB_API_KEY + WATSONX_PROJECT_ID</div>
+        <div class="card-desc">Any command that calls the IBM watsonx LLM.</div>
+      </div>
+    </div>
+    <div class="cmd-block">
+      <code>python orchestration/pipeline.py --request "..." --repo sample_repo/flaskbb</code>
+      <code>python orchestration/build.py --description "..." --name my_app</code>
+      <code>python orchestration/scan.py --source sample_repo/flaskbb/flaskbb --run-selected</code>
+      <code>python agents/pm_agent/pm_agent.py --request "..."</code>
+    </div>
+    <div class="cmd-block">
+      <p class="note"><b>.env must contain:</b><br />
+      BOB_API_KEY=your_ibm_cloud_api_key<br />
+      WATSONX_PROJECT_ID=your_project_id<br />
+      WATSONX_BASE_URL=https://us-south.ml.cloud.ibm.com  (optional)<br />
+      WATSONX_MODEL_ID=ibm/granite-4-h-small  (optional)</p>
+    </div>
+  </div>
+
+  <footer>Made with IBM Bob</footer>
+</div>
+</body>
+</html>

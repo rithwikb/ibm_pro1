@@ -1,0 +1,59 @@
+{
+  "_fixture": "test_architect_fault_missing_path",
+  "_scenario": "Guard 7c — Architect-fault. scoped_files contains src/auth/login.py which does NOT exist on disk. plan does NOT contain 'NEW FILE: src/auth/login.py'. Agent must NOT attempt coding. Must append two history entries: architect_agent (success:false) then coding_agent (success:null).",
+  "_expected": {
+    "status": "blocked",
+    "current_agent": "manager_agent",
+    "code_diff": null,
+    "history_entry_count_delta": 2,
+    "history_new_entries": [
+      {
+        "agent": "architect_agent",
+        "success": false,
+        "output_summary": "provided nonexistent file path: src/auth/login.py"
+      },
+      {
+        "agent": "coding_agent",
+        "success": null,
+        "output_summary": "execution blocked before coding — provided nonexistent file path: src/auth/login.py"
+      }
+    ],
+    "llm_must_not_be_invoked": true,
+    "validate_task_must_pass": true,
+    "immutable_fields_unchanged": ["task_id", "feature_request", "acceptance_criteria", "scoped_files", "plan", "test_results", "review_result", "retry_count"]
+  },
+  "_disk_state": {
+    "src/auth/login.py": "DOES NOT EXIST on disk",
+    "_note": "plan does NOT contain any 'NEW FILE:' declaration for this path"
+  },
+  "task_id": "task_005",
+  "feature_request": "Add rate limiting to the login endpoint",
+  "acceptance_criteria": [
+    "Max 5 login attempts per IP per 10 minutes",
+    "Returns HTTP 429 when limit exceeded"
+  ],
+  "scoped_files": [
+    "src/auth/login.py"
+  ],
+  "status": "in_progress",
+  "current_agent": "coding_agent",
+  "plan": "Add a token-bucket rate limiter middleware keyed by IP, wrap the login route with it, return 429 on exceed.",
+  "history": [
+    {
+      "agent": "pm_agent",
+      "output_summary": "criteria defined",
+      "timestamp": "2026-08-10T09:00:00Z",
+      "success": true
+    },
+    {
+      "agent": "architect_agent",
+      "output_summary": "plan + files scoped (path error introduced)",
+      "timestamp": "2026-08-10T09:05:00Z",
+      "success": true
+    }
+  ],
+  "code_diff": null,
+  "test_results": null,
+  "review_result": null,
+  "retry_count": 0
+}
