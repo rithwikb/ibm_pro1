@@ -7,7 +7,17 @@ import glob
 import json
 import streamlit as st
 
+# Sync Streamlit Cloud secrets to os.environ so pipeline subprocesses can access GROQ_API_KEY
+if hasattr(st, "secrets"):
+    try:
+        for _k, _v in st.secrets.items():
+            if isinstance(_v, (str, int, float, bool)) and _k not in os.environ:
+                os.environ[_k] = str(_v)
+    except Exception:
+        pass
+
 st.set_page_config(page_title="AI Dev Team", page_icon="🤖", layout="wide")
+
 
 # VS Code Dark+ Theme CSS + Sidebar Styles
 st.markdown("""
