@@ -4081,5 +4081,97 @@
         "success": true
       }
     ]
+  },
+  {
+    "run_id": 132,
+    "timestamp": "2026-09-09T16:54:01.739374+00:00",
+    "task_id": "task_6a7e21",
+    "agent_rates": {
+      "pm_agent": 1.0,
+      "architect_agent": 0.8,
+      "coding_agent": 1.0,
+      "testing_agent": 1.0,
+      "review_agent": 1.0
+    },
+    "reflections_triggered": [],
+    "agent_timings": [
+      {
+        "agent": "pm_agent",
+        "duration_s": 1.89,
+        "success": true
+      },
+      {
+        "agent": "architect_agent",
+        "duration_s": 0.54,
+        "success": true
+      },
+      {
+        "agent": "coding_agent",
+        "duration_s": 0.0,
+        "success": false
+      }
+    ]
+  },
+  {
+    "run_id": 133,
+    "timestamp": "2026-09-09T16:54:12.295655+00:00",
+    "task_id": "task_d9c31e",
+    "agent_rates": {
+      "pm_agent": 1.0,
+      "architect_agent": 0.6,
+      "coding_agent": 1.0,
+      "testing_agent": 1.0,
+      "review_agent": 1.0
+    },
+    "reflections_triggered": [],
+    "agent_timings": [
+      {
+        "agent": "pm_agent",
+        "duration_s": 2.17,
+        "success": true
+      },
+      {
+        "agent": "architect_agent",
+        "duration_s": 0.34,
+        "success": true
+      },
+      {
+        "agent": "coding_agent",
+        "duration_s": 0.0,
+        "success": false
+      }
+    ]
+  },
+  {
+    "run_id": 134,
+    "timestamp": "2026-09-09T16:54:23.041367+00:00",
+    "task_id": "task_9b3a26",
+    "agent_rates": {
+      "pm_agent": 1.0,
+      "architect_agent": 0.4,
+      "coding_agent": 1.0,
+      "testing_agent": 1.0,
+      "review_agent": 1.0
+    },
+    "reflections_triggered": [
+      "architect_agent"
+    ],
+    "agent_timings": [
+      {
+        "agent": "pm_agent",
+        "duration_s": 1.69,
+        "success": true
+      },
+      {
+        "agent": "architect_agent",
+        "duration_s": 0.65,
+        "success": true
+      },
+      {
+        "agent": "coding_agent",
+        "duration_s": 0.0,
+        "success": false
+      }
+    ]
   }
 ]

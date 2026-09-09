@@ -13,15 +13,15 @@
   },
   "architect_agent": {
     "recent_outcomes": [
+      false,
       true,
+      false,
       true,
-      true,
-      true,
-      true
+      false
     ],
     "runs": 5,
-    "successes": 5,
-    "rate": 1.0
+    "successes": 2,
+    "rate": 0.4
   },
   "coding_agent": {
     "recent_outcomes": [
