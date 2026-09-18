@@ -30,6 +30,9 @@ class Account:
         self.balance -= amount
 
 
+def h():
+    print('hello')
+
 def main():
     bank = Bank("Test Bank")
     account = Account(1, "Alice")
