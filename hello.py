@@ -1,3 +1,10 @@
+import os
+
+
+def check_hello_exists():
+    return os.path.exists('hello.py')
+
+
 class Bank:
     def __init__(self, name):
         self.name = name
