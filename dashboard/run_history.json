@@ -4173,5 +4173,45 @@
         "success": false
       }
     ]
+  },
+  {
+    "run_id": 135,
+    "timestamp": "2026-09-22T08:51:57.376848+00:00",
+    "task_id": "task_b7046f",
+    "agent_rates": {
+      "pm_agent": 1.0,
+      "architect_agent": 0.6,
+      "coding_agent": 1.0,
+      "testing_agent": 1.0,
+      "review_agent": 1.0
+    },
+    "reflections_triggered": [],
+    "agent_timings": [
+      {
+        "agent": "pm_agent",
+        "duration_s": 1.15,
+        "success": true
+      },
+      {
+        "agent": "architect_agent",
+        "duration_s": 0.7,
+        "success": true
+      },
+      {
+        "agent": "coding_agent",
+        "duration_s": 1.43,
+        "success": true
+      },
+      {
+        "agent": "testing_agent",
+        "duration_s": 38.67,
+        "success": true
+      },
+      {
+        "agent": "review_agent",
+        "duration_s": 0.54,
+        "success": true
+      }
+    ]
   }
 ]
