@@ -16,8 +16,8 @@
       true,
       false,
       true,
-      false,
-      true
+      true,
+      false
     ],
     "runs": 5,
     "successes": 3,
@@ -29,11 +29,11 @@
       true,
       true,
       true,
-      true
+      false
     ],
     "runs": 5,
-    "successes": 5,
-    "rate": 1.0
+    "successes": 4,
+    "rate": 0.8
   },
   "testing_agent": {
     "recent_outcomes": [

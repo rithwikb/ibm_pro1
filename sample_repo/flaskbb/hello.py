@@ -1,4 +1,5 @@
 import os
+import re
 
 
 def check_hello_exists():
@@ -32,6 +33,10 @@ class Account:
 
 def h():
     print('hello')
+
+def is_palindrome(s):
+    cleaned = re.sub(r'[^a-zA-Z0-9]', '', s).lower()
+    return cleaned == cleaned[::-1]
 
 def main():
     bank = Bank("Test Bank")

@@ -4213,5 +4213,70 @@
         "success": true
       }
     ]
+  },
+  {
+    "run_id": 136,
+    "timestamp": "2026-09-22T08:53:24.708709+00:00",
+    "task_id": "task_f4a2ce",
+    "agent_rates": {
+      "pm_agent": 1.0,
+      "architect_agent": 0.6,
+      "coding_agent": 0.8,
+      "testing_agent": 1.0,
+      "review_agent": 1.0
+    },
+    "reflections_triggered": [],
+    "agent_timings": [
+      {
+        "agent": "pm_agent",
+        "duration_s": 1.12,
+        "success": true
+      },
+      {
+        "agent": "architect_agent",
+        "duration_s": 0.38,
+        "success": true
+      },
+      {
+        "agent": "coding_agent",
+        "duration_s": 6.05,
+        "success": true
+      },
+      {
+        "agent": "testing_agent",
+        "duration_s": 0.01,
+        "success": false
+      }
+    ]
+  },
+  {
+    "run_id": 137,
+    "timestamp": "2026-09-22T09:18:59.174118+00:00",
+    "task_id": "task_ddd061",
+    "agent_rates": {
+      "pm_agent": 1.0,
+      "architect_agent": 0.6,
+      "coding_agent": 0.8,
+      "testing_agent": 1.0,
+      "review_agent": 1.0
+    },
+    "reflections_triggered": [],
+    "agent_timings": [
+      {
+        "agent": "pm_agent",
+        "duration_s": 1.18,
+        "success": true
+      },
+      {
+        "agent": "architect_agent",
+        "duration_s": 0.43,
+        "success": false
+      },
+      {
+        "agent": "architect_agent",
+        "duration_s": 7.56,
+        "success": false
+      }
+    ]
   }
 ]
